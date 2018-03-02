@@ -13,7 +13,7 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
     var hash = MD5("待加密內容");
 ***
 ### PBKDF2
-    var hash = PBKDF2("待加密內容",長度(可選));
+    var hash = PBKDF2("待加密內容",長度(必要,可選));
 長度有以下選項 : 128, 256, 512
 ***
 ### RIPEMD160
@@ -23,7 +23,7 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
     var hash = SHA1("待加密內容");
 ***
 ### SHA3
-    var hash = SHA3("待加密內容",長度(可選));
+    var hash = SHA3("待加密內容",長度(可選));
 長度有以下選項 : 224, 256, 384, 512
 ***
 ### SHA224
