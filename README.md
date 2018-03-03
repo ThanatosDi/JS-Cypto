@@ -24,7 +24,7 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
 ***
 ### SHA3
     var hash = SHA3("待加密內容");
-    var hash = SHA3("待加密內容",長度(可選));
+    var hash = SHA3("待加密內容",長度(可選));
 長度有以下選項 : 224, 256, 384, 512
 ***
 ### SHA224
@@ -99,7 +99,7 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
     var d = des.decyption("97ccec5569d8596b","6796ed29d11797b7","rJix9AFoHLh7ZnulLfcujYAkZUIaKw4LDEd97A68zoA=");
     
     顯示解密後的資料
-    document.write(d);
+    document.write(d);
     
-    範例 : DES加解密測試
+    範例 : DES加解密測試
 ***
