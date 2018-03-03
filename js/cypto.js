@@ -167,9 +167,61 @@ class AES{
 			mode: CryptoJS.mode.CBC,
 			padding: CryptoJS.pad.Pkcs7
 		});
-		 
-		// ??? utf8 ¦r²Å¦ê
+		
 		value = CryptoJS.enc.Utf8.stringify(value);
 		return value;
 	}
 }
+
+class DES{
+	encyption(value,key,iv){
+		if(key === undefined && iv === undefined){
+			key = CryptoJS.lib.WordArray.random(16/2);
+			iv = CryptoJS.lib.WordArray.random(16/2);
+			
+			var enckey = CryptoJS.enc.Utf8.parse(key);
+			var enciv = CryptoJS.enc.Utf8.parse(iv);
+			
+			
+			var hash = CryptoJS.AES.encrypt(value, enckey, {
+				iv: enciv,
+				mode: CryptoJS.mode.CBC,
+				padding: CryptoJS.pad.Pkcs7
+			});
+			
+			return {
+				key		: toString(key),
+				iv		: toString(iv),
+				hash	: toString(hash)
+			};
+		}else{
+			key = CryptoJS.enc.Utf8.parse(key);
+			iv = CryptoJS.enc.Utf8.parse(iv);
+			
+			var hash = CryptoJS.AES.encrypt(value, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC,
+				padding: CryptoJS.pad.Pkcs7
+			});
+			return {
+				key		: toString(key),
+				iv		: toString(iv),
+				hash	: toString(hash)
+			};
+		}
+	}
+	decyption(key,iv,hash){
+		key = CryptoJS.enc.Utf8.parse(key);
+		iv = CryptoJS.enc.Utf8.parse(iv);
+		hash = toString(hash);
+		var value = CryptoJS.AES.decrypt(hash, key, {
+			iv: iv,
+			mode: CryptoJS.mode.CBC,
+			padding: CryptoJS.pad.Pkcs7
+		});
+		 
+		value = CryptoJS.enc.Utf8.stringify(value);
+		return value;
+	}
+}
+
