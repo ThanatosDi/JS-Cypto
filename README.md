@@ -74,9 +74,9 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
     var d = aes.decyption("861ff6ca13cef2b5","c596207a221ab0fc","ZbQMj0T8dNajQFHVCCXN7A==");
     
     顯示解密後的資料
-    document.write(d);
+    document.write(d);
     
-    範例 : 123
+    範例 : 123
 ***
 ### DES
 #### 加密
