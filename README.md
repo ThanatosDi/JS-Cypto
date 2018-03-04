@@ -103,3 +103,49 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
     
     範例 : DES加解密測試
 ***
+### Rabbit
+#### 加密
+    var rabbit = new Rabbit();
+    var encyption = rabbit.encyption("待加密內容");
+    var encyption = rabbit.encyption("待加密內容","(key)秘鑰","(iv)向量");
+    
+    範例 : 
+    var encyption = rabbit.encyption("456");
+    var encyption = rabbit.encyption("456","861ff6ca13cef2b5","c596207a221ab0fc");
+    
+    顯示秘鑰、向量、加密後的資料
+    document.write(encyption.key+"<br/>");
+    document.write(encyption.iv+"<br/>");
+    document.write(encyption.hash+"<br/>");
+#### 解密
+    var decyption = rabbit.decyption("(key)秘鑰","(iv)向量","(hash)加密後的資料");
+    
+    範例 : 
+    var d = rabbit.decyption("97ccec5569d8596b","6796ed29d11797b7","rJix9AFoHLh7ZnulLfcujYAkZUIaKw4LDEd97A68zoA=");
+    
+    顯示解密後的資料
+    document.write(d);
+***
+### RC4
+#### 加密
+    var rc4 = new RC4();
+    var encyption = rc4.encyption("待加密內容");
+    var encyption = rc4.encyption("待加密內容","(key)秘鑰","(iv)向量");
+    
+    範例 : 
+    var encyption = rc4.encyption("456");
+    var encyption = rc4.encyption("456","861ff6ca13cef2b5","c596207a221ab0fc");
+    
+    顯示秘鑰、向量、加密後的資料
+    document.write(encyption.key+"<br/>");
+    document.write(encyption.iv+"<br/>");
+    document.write(encyption.hash+"<br/>");
+#### 解密
+    var decyption = rc4.decyption("(key)秘鑰","(iv)向量","(hash)加密後的資料");
+    
+    範例 : 
+    var d = rc4.decyption("97ccec5569d8596b","6796ed29d11797b7","rJix9AFoHLh7ZnulLfcujYAkZUIaKw4LDEd97A68zoA=");
+    
+    顯示解密後的資料
+    document.write(d);
+***
