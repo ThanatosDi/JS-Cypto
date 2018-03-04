@@ -1,12 +1,5 @@
-function toString(value){
-	value = value.toString();
-	return value;
-}
-function toInt(value){
-	return parseInt(value);
-}
-
 function MD5(value){
+	Import("md5");
 	var hash = CryptoJS.MD5(toString(value));
 	return hash;
 }
@@ -117,48 +110,25 @@ class AES{
 			key = CryptoJS.lib.WordArray.random(16/2);
 			iv = CryptoJS.lib.WordArray.random(16/2);
 			
-			var enckey = CryptoJS.enc.Utf8.parse(key);
-			var enciv = CryptoJS.enc.Utf8.parse(iv);
 			
-			
-			var hash = CryptoJS.AES.encrypt(value, enckey, {
-				iv: enciv,
-				mode: CryptoJS.mode.CBC,
-				padding: CryptoJS.pad.Pkcs7
-			});
-			console.log(toString(key));
-			console.log(toString(iv));
-			console.log(toString(hash));
-			
-			return {
-				key		: toString(key),
-				iv		: toString(iv),
-				hash	: toString(hash)
-			};
-		}else{
-			key = CryptoJS.enc.Utf8.parse(key);
-			iv = CryptoJS.enc.Utf8.parse(iv);
-			
-			var hash = CryptoJS.AES.encrypt(value, key, {
-				iv: iv,
-				mode: CryptoJS.mode.CBC,
-				padding: CryptoJS.pad.Pkcs7
-			});
-			console.log(toString(key));
-			console.log(toString(iv));
-			console.log(toString(hash));
-			
-			return {
-				key		: toString(key),
-				iv		: toString(iv),
-				hash	: toString(hash)
-			};
 		}
+		var enckey = CryptoJS.enc.Utf8.parse(key);
+		var enciv = CryptoJS.enc.Utf8.parse(iv);
+			
+			
+		var hash = CryptoJS.AES.encrypt(value, enckey, {
+			iv: enciv,
+			mode: CryptoJS.mode.CBC,
+			padding: CryptoJS.pad.Pkcs7
+		});
+			
+		return {
+			key		: toString(key),
+			iv		: toString(iv),
+			hash	: toString(hash)
+		};
 	}
 	decyption(key,iv,hash){
-		console.log(key);
-		console.log(iv);
-		console.log(hash);
 		key = CryptoJS.enc.Utf8.parse(key);
 		iv = CryptoJS.enc.Utf8.parse(iv);
 		hash = toString(hash);
@@ -178,37 +148,23 @@ class DES{
 		if(key === undefined && iv === undefined){
 			key = CryptoJS.lib.WordArray.random(16/2);
 			iv = CryptoJS.lib.WordArray.random(16/2);
+		}
+		
+		var enckey = CryptoJS.enc.Utf8.parse(key);
+		var enciv = CryptoJS.enc.Utf8.parse(iv);
 			
-			var enckey = CryptoJS.enc.Utf8.parse(key);
-			var enciv = CryptoJS.enc.Utf8.parse(iv);
 			
-			
-			var hash = CryptoJS.AES.encrypt(value, enckey, {
+		var hash = CryptoJS.AES.encrypt(value, enckey, {
 				iv: enciv,
 				mode: CryptoJS.mode.CBC,
 				padding: CryptoJS.pad.Pkcs7
-			});
+		});
 			
-			return {
-				key		: toString(key),
-				iv		: toString(iv),
-				hash	: toString(hash)
-			};
-		}else{
-			key = CryptoJS.enc.Utf8.parse(key);
-			iv = CryptoJS.enc.Utf8.parse(iv);
-			
-			var hash = CryptoJS.AES.encrypt(value, key, {
-				iv: iv,
-				mode: CryptoJS.mode.CBC,
-				padding: CryptoJS.pad.Pkcs7
-			});
-			return {
-				key		: toString(key),
-				iv		: toString(iv),
-				hash	: toString(hash)
-			};
-		}
+		return {
+			key		: toString(key),
+			iv		: toString(iv),
+			hash	: toString(hash)
+		};
 	}
 	decyption(key,iv,hash){
 		key = CryptoJS.enc.Utf8.parse(key);
@@ -223,5 +179,70 @@ class DES{
 		value = CryptoJS.enc.Utf8.stringify(value);
 		return value;
 	}
+}
+
+class Rabbit{
+	encyption(value,key,iv){
+		if(key === undefined && iv === undefined){
+			key = CryptoJS.lib.WordArray.random(16/2);
+			iv = CryptoJS.lib.WordArray.random(16/2);
+		}
+		var enckey = CryptoJS.enc.Utf8.parse(key);
+		var enciv = CryptoJS.enc.Utf8.parse(iv);
+			
+		var hash = CryptoJS.Rabbit.encrypt(value, enckey, {
+				iv: enciv
+			});
+			
+		return {
+			key 	: toString(key),
+			iv 		: toString(iv),
+			hash 	: toString(hash)
+		};
+	}
+	decyption(key,iv,hash){
+		key = CryptoJS.enc.Utf8.parse(key);
+		iv = CryptoJS.enc.Utf8.parse(iv);
+		var value = CryptoJS.Rabbit.decrypt(hash, key, {
+			iv: iv
+		});
+		
+		value = CryptoJS.enc.Utf8.stringify(value);
+		
+		return value;
+	}
+}
+
+class RC4{
+	encyption(value,key,iv){
+		if(key === undefined && iv === undefined){
+			key = CryptoJS.lib.WordArray.random(16/2);
+			iv = CryptoJS.lib.WordArray.random(16/2);
+		}
+		var enckey = CryptoJS.enc.Utf8.parse(key);
+		var enciv = CryptoJS.enc.Utf8.parse(iv);
+		 
+		var hash = CryptoJS.RC4.encrypt(value, enckey, {
+			iv: enciv
+		});
+		return {
+			key		: toString(key),
+			iv		: toString(iv),
+			hash	: toString(hash)
+		}
+	}
+	decyption(key,iv,hash){
+		var key = CryptoJS.enc.Utf8.parse(key);
+		var iv = CryptoJS.enc.Utf8.parse(iv);
+		
+		var value = CryptoJS.RC4.decrypt(hash, key, {
+			iv: iv
+		});
+		
+		value = CryptoJS.enc.Utf8.stringify(value);
+		
+		return value;
+	}
+	
 }
 
