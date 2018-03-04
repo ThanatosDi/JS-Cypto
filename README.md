@@ -1,5 +1,5 @@
 # JS-Cypto
-Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/p/crypto-js/)
+Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/p/crypto-js/) 3.1.2
 
 ***
 ## 使用方法
