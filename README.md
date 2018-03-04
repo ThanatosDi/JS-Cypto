@@ -5,9 +5,9 @@ Javascript 加解密模組 使用到 [cryptojs](https://code.google.com/archive/
 ## 使用方法
 在網頁中插入以下js檔
 
-    <script src="js/core.js"></script>
-    <script src="js/cypto.js"></script>
+    <script src="cypto.js"></script>
 
+並在該檔案最上方Import需要使用的加密方法
 ## 所有加密、解密方法
 ### MD5
     var hash = MD5("待加密內容");
